@@ -8,12 +8,15 @@ public class Song {
     @SerializedName("id")
     @Expose
     private Integer id;
+
     @SerializedName("title")
     @Expose
     private String title;
+
     @SerializedName("link")
     @Expose
     private String link;
+
     @SerializedName("thumbnail")
     @Expose
     private String thumbnail;

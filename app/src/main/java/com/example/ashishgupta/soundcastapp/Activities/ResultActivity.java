@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
 
 import com.example.ashishgupta.soundcastapp.Adapter.SongListAdapter;
 import com.example.ashishgupta.soundcastapp.Model.ResultPresenterImpl;
@@ -30,6 +31,7 @@ public class ResultActivity extends AppCompatActivity implements ResultView , So
 
     @Override
     public void fetchDataSuccess(List<Song> songs) {
+
         //RECYCLERVIEW
         RecyclerView rv= (RecyclerView) findViewById(R.id.activity_result_song_list_recyler_view);
         rv.setLayoutManager(new LinearLayoutManager(this));
@@ -41,7 +43,7 @@ public class ResultActivity extends AppCompatActivity implements ResultView , So
 
     @Override
     public void fetchDataFailed(String error) {
-
+        Toast.makeText(this, "Fetch failed", Toast.LENGTH_LONG).show();
     }
 
     @Override
