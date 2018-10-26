@@ -5,19 +5,19 @@ import com.example.ashishgupta.soundcastapp.Interface.Api;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class RetrofitClient {
+public class RetrofitClient2 {
 
-    public static final String BASE_URL = "https://static.talview.com/hiring/android/soundcast/";
-    private static RetrofitClient mRetrofitInstance;
+    public static final String BASE_URL = "https://www.jasonbase.com/things/zKWW.json";
+    private static RetrofitClient2 mRetrofitInstance;
     private Retrofit retrofit;
 
-    private RetrofitClient(){
+    private RetrofitClient2(){
         retrofit = new Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
     }
 
-    public static synchronized RetrofitClient getInstance(){
+    public static synchronized RetrofitClient2 getInstance(){
         if(mRetrofitInstance == null) {
-            mRetrofitInstance = new RetrofitClient();
+            mRetrofitInstance = new RetrofitClient2();
         }
         return mRetrofitInstance;
     }
