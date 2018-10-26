@@ -6,7 +6,7 @@ public class SongListPojo {
     private String thumbnNailUrl;
     private String songName;
     private String songURL;
-    
+
     public int getSongId() {
         return songId;
     }
