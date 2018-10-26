@@ -1,11 +1,31 @@
 package com.example.ashishgupta.soundcastapp.Pojo;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class SongListPojo {
 
     private int songId;
-    private String thumbnNailUrl;
-    private String songName;
-    private String songURL;
+    private String songThumbNail;
+    private String songTitle;
+    private String songLink;
+
+    public SongListPojo(JSONObject song){
+
+        try {
+
+            this.songId = song.getInt("id");
+            this.songTitle = song.getString("title");
+            this.songLink = song.getString("link");
+            this.songThumbNail = song.getString("thumbnail");
+
+        } catch (JSONException e) {
+
+            e.printStackTrace();
+
+        }
+
+    }
 
     public int getSongId() {
         return songId;
@@ -15,28 +35,28 @@ public class SongListPojo {
         this.songId = songId;
     }
 
-    public String getThumbnNailUrl() {
-        return thumbnNailUrl;
+    public String getSongThumbNail() {
+        return songThumbNail;
     }
 
-    public void setThumbnNailUrl(String thumbnNailUrl) {
-        this.thumbnNailUrl = thumbnNailUrl;
+    public void setSongThumbNail(String songThumbNail) {
+        this.songThumbNail = songThumbNail;
     }
 
-    public String getSongName() {
-        return songName;
+    public String getSongTitle() {
+        return songTitle;
     }
 
-    public void setSongName(String songName) {
-        this.songName = songName;
+    public void setSongTitle(String songTitle) {
+        this.songTitle = songTitle;
     }
 
-    public String getSongURL() {
-        return songURL;
+    public String getSongLink() {
+        return songLink;
     }
 
-    public void setSongURL(String songURL) {
-        this.songURL = songURL;
+    public void setSongLink(String songLink) {
+        this.songLink = songLink;
     }
 
 }
