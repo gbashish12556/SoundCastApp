@@ -1,7 +1,9 @@
-package com.example.ashishgupta.soundcastapp;
+package com.example.ashishgupta.soundcastapp.Activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.ashishgupta.soundcastapp.R;
 
 public class ResultActivity extends AppCompatActivity {
 
