@@ -1,20 +1,25 @@
 package com.example.ashishgupta.soundcastapp.Pojo;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import org.json.JSONArray;
 
+import java.util.List;
+
 public class ResultResponse {
 
     @SerializedName("songs")
-    JSONArray songList;
+    @Expose
+    private List<Song> songs = null;
 
-    public JSONArray getSongList() {
-        return songList;
+    public List<Song> getSongs() {
+        return songs;
     }
 
-    public void setSongList(JSONArray songList) {
-        this.songList = songList;
+    public void setSongs(List<Song> songs) {
+        this.songs = songs;
     }
 
 }
+

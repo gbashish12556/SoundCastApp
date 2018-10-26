@@ -7,7 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient2 {
 
-    public static final String BASE_URL = "https://www.jasonbase.com/things/zKWW.json";
+    public static final String BASE_URL = "https://www.jasonbase.com";
     private static RetrofitClient2 mRetrofitInstance;
     private Retrofit retrofit;
 
