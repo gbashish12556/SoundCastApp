@@ -18,34 +18,31 @@ public class SongListAdapter extends RecyclerView.Adapter<SongListAdapter.ViewHo
 
     private List<Song> mItems;
     private Context mContext;
-    private PostItemListener mItemListener;
+    private PostItemListener postItemListener;
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         public TextView titleSongTextView;
         public ImageView songThumbNailImageView;
-        PostItemListener mItemListener;
 
-        public ViewHolder(View itemView, PostItemListener postItemListener) {
+        public ViewHolder(View itemView) {
             super(itemView);
             titleSongTextView = (TextView) itemView.findViewById(R.id.item_song_list_song_name);
             songThumbNailImageView = itemView.findViewById(R.id.item_song_list_song_icon);
-            this.mItemListener = postItemListener;
-            itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
             Song item = getItem(getAdapterPosition());
-            this.mItemListener.onPostClick(item.getLink());
-            notifyDataSetChanged();
+            postItemListener.onPostClick(item.getLink());
+//            notifyDataSetChanged();
         }
     }
 
-    public SongListAdapter(Context context, List<Song> posts, PostItemListener itemListener) {
-        mItems = posts;
-        mContext = context;
-        mItemListener = itemListener;
+    public SongListAdapter(Context context, List<Song> posts, PostItemListener postItemListener) {
+        this.mItems = posts;
+        this.mContext = context;
+        this.postItemListener = postItemListener;
     }
 
     @Override
@@ -56,7 +53,7 @@ public class SongListAdapter extends RecyclerView.Adapter<SongListAdapter.ViewHo
 
         View postView = inflater.inflate(R.layout.item_song_list, parent, false);
 
-        ViewHolder viewHolder = new ViewHolder(postView, this.mItemListener);
+        ViewHolder viewHolder = new ViewHolder(postView);
         return viewHolder;
     }
 
