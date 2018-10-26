@@ -1,5 +1,5 @@
 package com.example.ashishgupta.soundcastapp.Presenter;
 
-public interface LoginPresenter {
+public interface ResultPresenter {
     public void fetchData();
 }
