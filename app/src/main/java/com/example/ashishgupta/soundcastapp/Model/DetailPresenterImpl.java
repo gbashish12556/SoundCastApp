@@ -96,7 +96,10 @@ public class DetailPresenterImpl implements DetailPresenter {
     @Override
     public void stopSong() {
 
-        ctx.stopService(serviceIntent);
+        if (isMusicPlaying) {
+            ctx.stopService(serviceIntent);
+            isMusicPlaying = false;
+        }
         detailView.playSuccess(currentSongPosition);
 
     }
