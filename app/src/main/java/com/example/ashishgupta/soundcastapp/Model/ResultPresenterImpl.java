@@ -1,10 +1,8 @@
 package com.example.ashishgupta.soundcastapp.Model;
 
-import android.util.Log;
-
 import com.example.ashishgupta.soundcastapp.Pojo.ResultResponse;
 import com.example.ashishgupta.soundcastapp.Presenter.ResultPresenter;
-import com.example.ashishgupta.soundcastapp.Utils.RetrofitClient2;
+import com.example.ashishgupta.soundcastapp.Utils.RetrofitClient;
 import com.example.ashishgupta.soundcastapp.View.ResultView;
 
 import java.io.IOException;
@@ -24,7 +22,7 @@ public class ResultPresenterImpl implements ResultPresenter {
     @Override
     public void fetchData() {
 
-        retrofit2.Call<ResultResponse> call = RetrofitClient2.getInstance().getApi().getSongs();
+        retrofit2.Call<ResultResponse> call = RetrofitClient.getInstance().getApi().getSongs();
 
         call.enqueue(new Callback<ResultResponse>() {
 

@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface ResultView
 {
+
      public void fetchDataSuccess(List<Song> songs);
      public void fetchDataFailed(String message);
 }
