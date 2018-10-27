@@ -21,7 +21,7 @@ public class SongListAdapter extends RecyclerView.Adapter<SongListAdapter.ViewHo
     private Context mContext;
     private PostItemListener postItemListener;
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private TextView titleSongTextView;
         private ImageView songThumbNailImageView;
@@ -29,10 +29,12 @@ public class SongListAdapter extends RecyclerView.Adapter<SongListAdapter.ViewHo
 
         public ViewHolder(View itemView, PostItemListener postItemListener) {
             super(itemView);
+
             titleSongTextView = (TextView) itemView.findViewById(R.id.item_song_list_song_name);
             songThumbNailImageView = itemView.findViewById(R.id.item_song_list_song_icon);
             this.postItemListener = postItemListener;
             itemView.setOnClickListener(this);
+
         }
 
         @Override
@@ -45,9 +47,11 @@ public class SongListAdapter extends RecyclerView.Adapter<SongListAdapter.ViewHo
     }
 
     public SongListAdapter(Context context, List<Song> posts, PostItemListener postItemListener) {
+
         this.mItems = posts;
         this.mContext = context;
         this.postItemListener = postItemListener;
+
     }
 
     @Override
@@ -60,6 +64,7 @@ public class SongListAdapter extends RecyclerView.Adapter<SongListAdapter.ViewHo
 
         ViewHolder viewHolder = new ViewHolder(postView,this.postItemListener);
         return viewHolder;
+
     }
 
     @Override
@@ -78,12 +83,14 @@ public class SongListAdapter extends RecyclerView.Adapter<SongListAdapter.ViewHo
         return mItems.size();
     }
 
-
     private Song getItem(int adapterPosition) {
         return mItems.get(adapterPosition);
     }
 
     public interface PostItemListener {
+
         void onPostClick(List<Song> songs, int position);
+
     }
+
 }
