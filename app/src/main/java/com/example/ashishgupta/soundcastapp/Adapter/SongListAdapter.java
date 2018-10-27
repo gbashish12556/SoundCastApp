@@ -2,6 +2,7 @@ package com.example.ashishgupta.soundcastapp.Adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,20 +23,24 @@ public class SongListAdapter extends RecyclerView.Adapter<SongListAdapter.ViewHo
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        public TextView titleSongTextView;
-        public ImageView songThumbNailImageView;
+        private TextView titleSongTextView;
+        private ImageView songThumbNailImageView;
+        private PostItemListener postItemListener;
 
-        public ViewHolder(View itemView) {
+        public ViewHolder(View itemView, PostItemListener postItemListener) {
             super(itemView);
             titleSongTextView = (TextView) itemView.findViewById(R.id.item_song_list_song_name);
             songThumbNailImageView = itemView.findViewById(R.id.item_song_list_song_icon);
+            this.postItemListener = postItemListener;
+            itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
+
             Song item = getItem(getAdapterPosition());
-            postItemListener.onPostClick(item.getLink());
-//            notifyDataSetChanged();
+            postItemListener.onPostClick(mItems,getAdapterPosition());
+
         }
     }
 
@@ -53,7 +58,7 @@ public class SongListAdapter extends RecyclerView.Adapter<SongListAdapter.ViewHo
 
         View postView = inflater.inflate(R.layout.item_song_list, parent, false);
 
-        ViewHolder viewHolder = new ViewHolder(postView);
+        ViewHolder viewHolder = new ViewHolder(postView,this.postItemListener);
         return viewHolder;
     }
 
@@ -79,6 +84,6 @@ public class SongListAdapter extends RecyclerView.Adapter<SongListAdapter.ViewHo
     }
 
     public interface PostItemListener {
-        void onPostClick(String link);
+        void onPostClick(List<Song> songs, int position);
     }
 }

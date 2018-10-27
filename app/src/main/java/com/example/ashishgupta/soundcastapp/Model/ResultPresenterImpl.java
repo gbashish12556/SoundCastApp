@@ -16,31 +16,47 @@ import retrofit2.Response;
 public class ResultPresenterImpl implements ResultPresenter {
 
     ResultView mResultView;
+
     public ResultPresenterImpl(ResultView resultView ){
         this.mResultView = resultView;
     }
+
     @Override
     public void fetchData() {
+
         retrofit2.Call<ResultResponse> call = RetrofitClient2.getInstance().getApi().getSongs();
+
         call.enqueue(new Callback<ResultResponse>() {
+
             @Override
             public void onResponse(Call<ResultResponse> call, Response<ResultResponse> response) {
-                Log.d("code",String.valueOf(response.code()));
-                if (response.code() == 200){
+
+                if (response.code() == 200) {
+
                     mResultView.fetchDataSuccess(response.body().getSongs());
-                }else{
+
+                }
+                else {
+
                     try {
+
                         mResultView.fetchDataFailed(response.errorBody().string());
+
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
+
                 }
+
             }
 
             @Override
             public void onFailure(Call<ResultResponse> call, Throwable t) {
 
             }
+
         });
+
     }
+
 }

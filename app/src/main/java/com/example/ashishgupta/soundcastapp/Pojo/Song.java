@@ -1,9 +1,13 @@
 package com.example.ashishgupta.soundcastapp.Pojo;
 
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Song {
+import java.io.Serializable;
+
+public class Song implements Serializable {
 
     @SerializedName("id")
     @Expose
