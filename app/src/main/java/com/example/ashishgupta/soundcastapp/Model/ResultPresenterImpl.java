@@ -4,9 +4,7 @@ import com.example.ashishgupta.soundcastapp.Pojo.ResultResponse;
 import com.example.ashishgupta.soundcastapp.Presenter.ResultPresenter;
 import com.example.ashishgupta.soundcastapp.Utils.RetrofitClient;
 import com.example.ashishgupta.soundcastapp.View.ResultView;
-
 import java.io.IOException;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

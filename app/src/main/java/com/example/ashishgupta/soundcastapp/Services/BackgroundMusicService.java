@@ -3,12 +3,8 @@ package com.example.ashishgupta.soundcastapp.Services;
 import android.app.Service;
 import android.content.Intent;
 import android.media.MediaPlayer;
-import android.os.Environment;
 import android.os.IBinder;
-import android.util.Log;
-
 import java.io.IOException;
-
 
 public class BackgroundMusicService extends Service {
 

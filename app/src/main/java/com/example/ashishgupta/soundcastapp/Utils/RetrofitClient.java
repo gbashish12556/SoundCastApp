@@ -1,7 +1,6 @@
 package com.example.ashishgupta.soundcastapp.Utils;
 
 import com.example.ashishgupta.soundcastapp.Interface.Api;
-
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
