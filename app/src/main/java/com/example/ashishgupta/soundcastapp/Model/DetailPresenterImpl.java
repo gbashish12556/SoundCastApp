@@ -27,7 +27,6 @@ public class DetailPresenterImpl implements DetailPresenter {
 
     }
 
-
     @Override
     public void playNext() {
 
