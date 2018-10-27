@@ -15,12 +15,12 @@ import java.util.List;
 
 public class DetailActivity extends AppCompatActivity implements DetailView {
 
-    ImageView previosuButton, nextButton, playButton, songIcon;
-    boolean isMusicPlaying = false;
-    int currentSongPosition = 0;
-    List<Song> songs;
-    Intent serviceIntent;
-    DetailPresenter detailPresenter;
+    private ImageView previosuButton, nextButton, playButton, songIcon, backButton;
+    private boolean isMusicPlaying = false;
+    private int currentSongPosition = 0;
+    private List<Song> songs;
+    private Intent serviceIntent;
+    private DetailPresenter detailPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +43,7 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
         previosuButton = findViewById(R.id.activity_detail_previous_song_button);
         nextButton = findViewById(R.id.activity_detail_next_song_button);
         playButton = findViewById(R.id.activity_detail_play_pause_button);
+        backButton = findViewById(R.id.activity_detail_back_button_arrow);
 
         playButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,16 +51,16 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
 
                 if (isMusicPlaying) {
 
-                    detailPresenter.stopSong();
-                    isMusicPlaying = false;
                     playButton.setImageResource(R.drawable.ic_play_circle_outline_black_24dp);
+                    isMusicPlaying = false;
+                    detailPresenter.stopSong();
 
                 }
                 else {
 
-                    detailPresenter.playSong();
-                    isMusicPlaying = true;
                     playButton.setImageResource(R.drawable.ic_pause_circle_outline_black_24dp);
+                    isMusicPlaying = true;
+                    detailPresenter.playSong();
 
                 }
 
@@ -83,6 +84,17 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
             public void onClick(View v) {
 
                 detailPresenter.playPrevious();
+
+            }
+
+        });
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                onBackPressed();
 
             }
 
