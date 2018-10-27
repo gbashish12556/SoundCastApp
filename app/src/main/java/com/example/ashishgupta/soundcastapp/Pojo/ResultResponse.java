@@ -2,9 +2,6 @@ package com.example.ashishgupta.soundcastapp.Pojo;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-
-import org.json.JSONArray;
-
 import java.util.List;
 
 public class ResultResponse {

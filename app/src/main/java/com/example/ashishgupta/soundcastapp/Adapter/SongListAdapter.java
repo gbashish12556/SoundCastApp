@@ -7,11 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.example.ashishgupta.soundcastapp.Pojo.Song;
 import com.example.ashishgupta.soundcastapp.R;
 import com.squareup.picasso.Picasso;
-
 import java.util.List;
 
 public class SongListAdapter extends RecyclerView.Adapter<SongListAdapter.ViewHolder> {
@@ -20,29 +18,37 @@ public class SongListAdapter extends RecyclerView.Adapter<SongListAdapter.ViewHo
     private Context mContext;
     private PostItemListener postItemListener;
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        public TextView titleSongTextView;
-        public ImageView songThumbNailImageView;
+        private TextView titleSongTextView;
+        private ImageView songThumbNailImageView;
+        private PostItemListener postItemListener;
 
-        public ViewHolder(View itemView) {
+        public ViewHolder(View itemView, PostItemListener postItemListener) {
             super(itemView);
+
             titleSongTextView = (TextView) itemView.findViewById(R.id.item_song_list_song_name);
             songThumbNailImageView = itemView.findViewById(R.id.item_song_list_song_icon);
+            this.postItemListener = postItemListener;
+            itemView.setOnClickListener(this);
+
         }
 
         @Override
         public void onClick(View view) {
+
             Song item = getItem(getAdapterPosition());
-            postItemListener.onPostClick(item.getLink());
-//            notifyDataSetChanged();
+            postItemListener.onPostClick(mItems,getAdapterPosition());
+
         }
     }
 
     public SongListAdapter(Context context, List<Song> posts, PostItemListener postItemListener) {
+
         this.mItems = posts;
         this.mContext = context;
         this.postItemListener = postItemListener;
+
     }
 
     @Override
@@ -53,8 +59,9 @@ public class SongListAdapter extends RecyclerView.Adapter<SongListAdapter.ViewHo
 
         View postView = inflater.inflate(R.layout.item_song_list, parent, false);
 
-        ViewHolder viewHolder = new ViewHolder(postView);
+        ViewHolder viewHolder = new ViewHolder(postView,this.postItemListener);
         return viewHolder;
+
     }
 
     @Override
@@ -73,12 +80,14 @@ public class SongListAdapter extends RecyclerView.Adapter<SongListAdapter.ViewHo
         return mItems.size();
     }
 
-
     private Song getItem(int adapterPosition) {
         return mItems.get(adapterPosition);
     }
 
     public interface PostItemListener {
-        void onPostClick(String link);
+
+        void onPostClick(List<Song> songs, int position);
+
     }
+
 }

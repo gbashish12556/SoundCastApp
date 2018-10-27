@@ -1,25 +1,29 @@
 package com.example.ashishgupta.soundcastapp.Utils;
 
 import com.example.ashishgupta.soundcastapp.Interface.Api;
-
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class RetrofitClient2 {
+public class RetrofitClient {
 
     public static final String BASE_URL = "https://www.jasonbase.com";
-    private static RetrofitClient2 mRetrofitInstance;
+    private static RetrofitClient mRetrofitInstance;
     private Retrofit retrofit;
 
-    private RetrofitClient2(){
+    private RetrofitClient(){
+
         retrofit = new Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
+
     }
 
-    public static synchronized RetrofitClient2 getInstance(){
+    public static synchronized RetrofitClient getInstance(){
+
         if(mRetrofitInstance == null) {
-            mRetrofitInstance = new RetrofitClient2();
+            mRetrofitInstance = new RetrofitClient();
         }
+
         return mRetrofitInstance;
+
     }
 
     public Api getApi(){

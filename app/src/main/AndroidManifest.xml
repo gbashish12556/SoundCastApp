@@ -22,6 +22,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Activities.DetailActivity"></activity>
+
+        <service android:name="com.example.ashishgupta.soundcastapp.Services.BackgroundMusicService">
+
+        </service>
+
     </application>
 
 </manifest>

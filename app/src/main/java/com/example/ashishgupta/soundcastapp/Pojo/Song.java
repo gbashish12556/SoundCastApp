@@ -2,18 +2,22 @@ package com.example.ashishgupta.soundcastapp.Pojo;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import java.io.Serializable;
 
-public class Song {
+public class Song implements Serializable {
 
     @SerializedName("id")
     @Expose
     private Integer id;
+
     @SerializedName("title")
     @Expose
     private String title;
+
     @SerializedName("link")
     @Expose
     private String link;
+
     @SerializedName("thumbnail")
     @Expose
     private String thumbnail;
