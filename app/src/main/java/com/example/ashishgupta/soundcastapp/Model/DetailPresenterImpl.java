@@ -6,6 +6,8 @@ import com.example.ashishgupta.soundcastapp.Pojo.Song;
 import com.example.ashishgupta.soundcastapp.Presenter.DetailPresenter;
 import com.example.ashishgupta.soundcastapp.Services.BackgroundMusicService;
 import com.example.ashishgupta.soundcastapp.View.DetailView;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class DetailPresenterImpl implements DetailPresenter {
@@ -14,10 +16,10 @@ public class DetailPresenterImpl implements DetailPresenter {
     private Context ctx;
     private Intent serviceIntent;
     private Boolean isMusicPlaying = false;
-    private int currentSongPosition = 0;
-    private List<Song> songs;
+    private int currentSongPosition;
+    private ArrayList<Song> songs;
 
-    public DetailPresenterImpl(DetailView detailView, Context ctx, List<Song> songs, int position) {
+    public DetailPresenterImpl(DetailView detailView, Context ctx, ArrayList<Song> songs, int position) {
 
         this.detailView = detailView;
         this.currentSongPosition = position;

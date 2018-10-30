@@ -11,16 +11,18 @@ import com.example.ashishgupta.soundcastapp.Presenter.DetailPresenter;
 import com.example.ashishgupta.soundcastapp.R;
 import com.example.ashishgupta.soundcastapp.View.DetailView;
 import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class DetailActivity extends AppCompatActivity implements DetailView {
 
-    private ImageView previosuButton, nextButton, playButton, songIcon, backButton;
-    private boolean isMusicPlaying = false;
-    private int currentSongPosition = 0;
-    private List<Song> songs;
-    private Intent serviceIntent;
-    private DetailPresenter detailPresenter;
+    ImageView previosuButton, nextButton, playButton, songIcon, backButton;
+    boolean isMusicPlaying = false;
+    int currentSongPosition = 0;
+    ArrayList<Song> songs;
+    Intent serviceIntent;
+    DetailPresenter detailPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,14 +31,6 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
         setContentView(R.layout.activity_detail);
 
         songIcon = findViewById(R.id.activity_detail_song_icon);
-
-        if (getIntent() != null) {
-
-            songs = (List<Song>) getIntent().getSerializableExtra("songs");
-            currentSongPosition = getIntent().getIntExtra("position",0);
-            Picasso.get().load(songs.get(currentSongPosition).getThumbnail()).into(songIcon);
-
-        }
 
         detailPresenter = new DetailPresenterImpl(DetailActivity.this,this,songs,currentSongPosition);
 
@@ -100,6 +94,16 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
 
         });
 
+        if (getIntent() != null) {
+
+            songs = (ArrayList<Song>) getIntent().getSerializableExtra("songs");
+            currentSongPosition = getIntent().getIntExtra("position",0);
+            if(songs != null) {
+                Picasso.get().load(songs.get(currentSongPosition).getThumbnail()).into(songIcon);
+            }
+
+        }
+
     }
 
     @Override
@@ -113,7 +117,9 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
     @Override
     public void playSuccess(int postion) {
 
-        Picasso.get().load(songs.get(postion).getThumbnail()).into(songIcon);
+        if(songs != null) {
+            Picasso.get().load(songs.get(postion).getThumbnail()).into(songIcon);
+        }
 
     }
 
