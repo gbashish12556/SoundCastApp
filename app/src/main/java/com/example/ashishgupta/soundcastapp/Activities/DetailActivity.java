@@ -3,6 +3,7 @@ package com.example.ashishgupta.soundcastapp.Activities;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import com.example.ashishgupta.soundcastapp.Model.DetailPresenterImpl;
@@ -31,6 +32,16 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
         setContentView(R.layout.activity_detail);
 
         songIcon = findViewById(R.id.activity_detail_song_icon);
+
+        if (getIntent() != null) {
+
+            songs = (ArrayList<Song>) getIntent().getSerializableExtra("songs");
+            currentSongPosition = getIntent().getIntExtra("position",0);
+            if(songs != null) {
+                Picasso.get().load(songs.get(currentSongPosition).getThumbnail()).into(songIcon);
+            }
+
+        }
 
         detailPresenter = new DetailPresenterImpl(DetailActivity.this,this,songs,currentSongPosition);
 
@@ -93,16 +104,6 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
             }
 
         });
-
-        if (getIntent() != null) {
-
-            songs = (ArrayList<Song>) getIntent().getSerializableExtra("songs");
-            currentSongPosition = getIntent().getIntExtra("position",0);
-            if(songs != null) {
-                Picasso.get().load(songs.get(currentSongPosition).getThumbnail()).into(songIcon);
-            }
-
-        }
 
     }
 
