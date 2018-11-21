@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 import com.example.ashishgupta.soundcastapp.Adapter.SongListAdapter;
 import com.example.ashishgupta.soundcastapp.Model.ResultPresenterImpl;
@@ -19,13 +21,16 @@ public class ResultActivity extends AppCompatActivity implements ResultView {
 
     ResultPresenter mResultPresenter;
     SongListAdapter.PostItemListener mPostItemListener;
+    ProgressBar resultProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
+        resultProgressBar = findViewById(R.id.result_progress_bar);
         mResultPresenter = new ResultPresenterImpl(ResultActivity.this);
+        resultProgressBar.setVisibility(View.VISIBLE);
         mResultPresenter.fetchData();
 
     }
@@ -33,6 +38,7 @@ public class ResultActivity extends AppCompatActivity implements ResultView {
     @Override
     public void fetchDataSuccess(List<Song> songs) {
 
+        resultProgressBar.setVisibility(View.GONE);
         //RECYCLERVIEW
         RecyclerView rv= (RecyclerView) findViewById(R.id.activity_result_song_list_recyler_view);
         rv.setLayoutManager(new LinearLayoutManager(this));

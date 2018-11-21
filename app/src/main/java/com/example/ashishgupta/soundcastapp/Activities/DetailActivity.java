@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+
 import com.example.ashishgupta.soundcastapp.Model.DetailPresenterImpl;
 import com.example.ashishgupta.soundcastapp.Pojo.Song;
 import com.example.ashishgupta.soundcastapp.Presenter.DetailPresenter;
@@ -24,6 +26,7 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
     ArrayList<Song> songs;
     Intent serviceIntent;
     DetailPresenter detailPresenter;
+    ProgressBar dedicatedProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +48,7 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
 
         detailPresenter = new DetailPresenterImpl(DetailActivity.this,this,songs,currentSongPosition);
 
+        dedicatedProgressBar = findViewById(R.id.dedicated_progress_bar);
         previosuButton = findViewById(R.id.activity_detail_previous_song_button);
         nextButton = findViewById(R.id.activity_detail_next_song_button);
         playButton = findViewById(R.id.activity_detail_play_pause_button);
@@ -53,7 +57,7 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
         playButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                dedicatedProgressBar.setVisibility(View.VISIBLE);
                 if (isMusicPlaying) {
 
                     playButton.setImageResource(R.drawable.ic_play_circle_outline_black_24dp);
@@ -76,7 +80,7 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
 
             @Override
             public void onClick(View v) {
-
+                dedicatedProgressBar.setVisibility(View.VISIBLE);
                 detailPresenter.playNext();
 
             }
@@ -87,7 +91,7 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
 
             @Override
             public void onClick(View v) {
-
+                dedicatedProgressBar.setVisibility(View.VISIBLE);
                 detailPresenter.playPrevious();
 
             }
@@ -117,7 +121,7 @@ public class DetailActivity extends AppCompatActivity implements DetailView {
 
     @Override
     public void playSuccess(int postion) {
-
+        dedicatedProgressBar.setVisibility(View.GONE);
         if(songs != null) {
             Picasso.get().load(songs.get(postion).getThumbnail()).into(songIcon);
         }
